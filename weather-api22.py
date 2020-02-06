@@ -2,25 +2,20 @@ from flask import request , Flask
 import json
 import requests
 app = Flask(__name__)
-@app.route("/city_weather/", methods=['GET'])
+@app.route("/city/", methods=['GET'])
 def weather_city ():
-    c = request.args.get('city',default=None, type=str)
+    c = request.args.get('name',default=None, type=str)
     res = ""
     if c:
-        key = "62609e64d9ce42749db03230200402"
-        url = "http://api.worldweatheronline.com/premium/v1/weather.ashx?"
-        name = request.args.get('city', default=None, type=str)
-#         if name == 'e':
-#             break
+        key = "49cd3ff9fc6d4e7f1f2caeaaf7715a3b"
+        url = "https://samples.openweathermap.org/data/2.5/weather?"
         params = {
-        "key" : key,
-        "q":name,
-        "format":'json',
-        "num_of_days":5
+        "appid":key,
+        "q":c
         }
         res = requests.get(url, params=params)
         res = json.loads(res.text)
-        k = res["current_condition"]
+        k = res['main']['temp']
         res = "<h1> Weather of {} = {} </h1>".format(c,k)
     else:
         res = "<h1>No city found </h1>"
