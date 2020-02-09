@@ -9,4 +9,7 @@ Get current weather of your city by tybe /city/?name = {your search city} when y
 - flask and requests lip.
 - web browser
 
+**Highlights**
+- Use [OpenWeatherMap] API
+
 use this link to open the app http://127.0.0.1:5000/city/?name= locally and enter your city
