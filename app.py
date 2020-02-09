@@ -8,7 +8,7 @@ def weather_city ():
     res = ""
     if c:
         key = "49cd3ff9fc6d4e7f1f2caeaaf7715a3b"
-        url = "https://samples.openweathermap.org/data/2.5/weather?"
+        url = "https://api.openweathermap.org/data/2.5/weather?"
         params = {
         "appid":key,
         "q":c
@@ -16,7 +16,9 @@ def weather_city ():
         res = requests.get(url, params=params)
         res = json.loads(res.text)
         k = res['main']['temp']
-        res = "<h1> Weather of {} = {} </h1>".format(c,k)
+        #kk = (5/9)*(k-32)
+        kk = int((5/9)*(k-252))
+        res = "<h1> Weather of {} = {} </h1>".format(c,kk)
     else:
         res = "<h1>No city found </h1>"
     return res
